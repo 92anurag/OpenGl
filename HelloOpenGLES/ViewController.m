@@ -134,8 +134,8 @@ unsigned char indices[] = {0,1,2};
     glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
     
     glEnable(GL_TEXTURE_2D);
-    textureID1 = [self loadtexture:@"hello.png"];
-    textureID2 = [self loadtexture:@"sun.jpg"];
+    textureID1 = [self loadtexture:@"sun.jpg"];
+    textureID2 = [self loadtexture:@"Moon.jpg"];
 }
 
 -(void) drawTriangle {
