@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelloOpenGLES/ViewController.m"
-            timestampString = "479796289.727106"
+            timestampString = "479811725.173185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341">
+            startingLineNumber = "345"
+            endingLineNumber = "345">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelloOpenGLES/ViewController.m"
-            timestampString = "479796289.727106"
+            timestampString = "479811725.173185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-glkView:drawInRect:"
             landmarkType = "5">
          </BreakpointContent>

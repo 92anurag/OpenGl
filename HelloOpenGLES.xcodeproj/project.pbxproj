@@ -16,6 +16,8 @@
 		7FF3A4991C969D1800D374F9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF3A4981C969D1800D374F9 /* GLKit.framework */; };
 		7FF3A49C1C96B8CB00D374F9 /* ShaderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF3A49B1C96B8CB00D374F9 /* ShaderHelper.m */; };
 		E30ED9121C982E4C0086E1BC /* hello.png in Resources */ = {isa = PBXBuildFile; fileRef = E30ED9111C982E4C0086E1BC /* hello.png */; settings = {ASSET_TAGS = (); }; };
+		E30ED9311C99587F0086E1BC /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E30ED9301C99587F0086E1BC /* sun.jpg */; settings = {ASSET_TAGS = (); }; };
+		E30ED9331C9958B40086E1BC /* Moon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E30ED9321C9958B40086E1BC /* Moon.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		7FF3A49A1C96B8CB00D374F9 /* ShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderHelper.h; sourceTree = "<group>"; };
 		7FF3A49B1C96B8CB00D374F9 /* ShaderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderHelper.m; sourceTree = "<group>"; };
 		E30ED9111C982E4C0086E1BC /* hello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hello.png; path = ../hello.png; sourceTree = "<group>"; };
+		E30ED9301C99587F0086E1BC /* sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sun.jpg; path = ../mipmap/sun.jpg; sourceTree = "<group>"; };
+		E30ED9321C9958B40086E1BC /* Moon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Moon.jpg; path = ../mipmap/Moon.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,8 @@
 		7FF3A4751C969CCE00D374F9 = {
 			isa = PBXGroup;
 			children = (
+				E30ED9321C9958B40086E1BC /* Moon.jpg */,
+				E30ED9301C99587F0086E1BC /* sun.jpg */,
 				E30ED9111C982E4C0086E1BC /* hello.png */,
 				7FF3A4981C969D1800D374F9 /* GLKit.framework */,
 				7FF3A4801C969CCE00D374F9 /* HelloOpenGLES */,
@@ -151,6 +157,8 @@
 			files = (
 				E30ED9121C982E4C0086E1BC /* hello.png in Resources */,
 				7FF3A4911C969CCE00D374F9 /* LaunchScreen.storyboard in Resources */,
+				E30ED9331C9958B40086E1BC /* Moon.jpg in Resources */,
+				E30ED9311C99587F0086E1BC /* sun.jpg in Resources */,
 				7FF3A48E1C969CCE00D374F9 /* Assets.xcassets in Resources */,
 				7FF3A48C1C969CCE00D374F9 /* Main.storyboard in Resources */,
 			);

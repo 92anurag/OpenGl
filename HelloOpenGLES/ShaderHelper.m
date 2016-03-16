@@ -30,10 +30,12 @@ const char* F_SRC = ""
                     "precision highp float; \n"
                     " varying vec4 v_color;   \n"
                     " varying vec2 v_TextureCoordinate; \n"
-                    " uniform sampler2D activeTexture; \n"
+                    " uniform sampler2D activeTexture1; \n"
+                    " uniform sampler2D activeTexture2; \n"
                     "void main() {          \n"
-                    "vec4 textureColor = texture2D(activeTexture,v_TextureCoordinate); \n"
-                    "   gl_FragColor = v_color * textureColor;\n"
+                    "vec4 textureColor1 = texture2D(activeTexture1,v_TextureCoordinate); \n"
+                    "vec4 textureColor2 = texture2D(activeTexture2,v_TextureCoordinate); \n"
+                    "   gl_FragColor = textureColor1 * textureColor2;\n"
                     "}";
 
 @interface ShaderHelper()

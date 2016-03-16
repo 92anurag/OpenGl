@@ -28,8 +28,10 @@
     GLKMatrix4 viewMatrix;
     float zpos;
     int textureCoordinateIndex;
-    int activeTextureIndex;
-    int textureID;
+    int activeTexture1Index;
+    int activeTexture2Index;
+    int textureID1;
+    int textureID2;
     
 }
 - (IBAction)updateTria:(id)sender;

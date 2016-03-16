@@ -110,7 +110,8 @@ unsigned char indices[] = {0,1,2};
     modelMatrixIndex = glGetUniformLocation(programObject, "u_ModelMatrix");
     projectionMatrixIndex = glGetUniformLocation(programObject, "u_ProjectionMatrix");
     viewMatrixIndex = glGetUniformLocation(programObject, "u_ViewMatrix");
-    activeTextureIndex = glGetUniformLocation(programObject, "activeTexture");
+    activeTexture1Index = glGetUniformLocation(programObject, "activeTexture1");
+    activeTexture2Index = glGetUniformLocation(programObject, "activeTexture2");
     textureCoordinateIndex = glGetAttribLocation(programObject, "a_TextureCoordinate");
     angle =0;
     scale =1;
@@ -133,8 +134,8 @@ unsigned char indices[] = {0,1,2};
     glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
     
     glEnable(GL_TEXTURE_2D);
-    textureID = [self loadtexture:@"hello.png"];
-    
+    textureID1 = [self loadtexture:@"hello.png"];
+    textureID2 = [self loadtexture:@"sun.jpg"];
 }
 
 -(void) drawTriangle {
@@ -176,10 +177,13 @@ unsigned char indices[] = {0,1,2};
     
     //
     glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D,textureID1);
+    glUniform1i(activeTexture1Index, 0);
     
-    glBindTexture(GL_TEXTURE_2D,textureID);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D,textureID2);
+    glUniform1i(activeTexture2Index, 1);
     
-    glUniform1i(activeTextureIndex, 0);
     glEnableVertexAttribArray(positionIndex);
     glEnableVertexAttribArray(colorIndex);
     glEnableVertexAttribArray(textureCoordinateIndex);
@@ -215,7 +219,7 @@ unsigned char indices[] = {0,1,2};
     if(zpos >15.0){
         zpos = 5.0;
     }
-    
+    zpos =3;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     viewMatrix    = GLKMatrix4Identity;
     viewMatrix = GLKMatrix4MakeLookAt(0,0,zpos,0,0,0,0,1,0);
