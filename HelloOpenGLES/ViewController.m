@@ -27,47 +27,127 @@ unsigned char indices[] = {0,1,2};
 @interface ViewController ()
 -(void) initGL;
 -(void) initTriangleVBO;
--(int) loadtexture: (NSString*) fileName;
-
+-(int) loadTextures;
+-(GLubyte *) pixelsFromImage:(NSString*)imageName;
     
 @end
 
 @implementation ViewController
 
--(int) loadtexture:(NSString*) fileName {
-    
-    //generate the texture ID
+-(int) loadTextures
+{
     GLuint textureId;
-    glGenTextures(1,&textureId);
-    CGImageRef spriteImage = [UIImage imageNamed:fileName].CGImage;
-    if(!spriteImage) {
-        NSLog(@"Failed to lod image %@",fileName);
-        exit(1);
+    glGenTextures(1, &textureId);
+    
+    //bind to texture
+    glBindTexture(GL_TEXTURE_2D, textureId);
+    
+    //Load Image at level 0
+    GLubyte* pixels = [self pixelsFromImage:@"mipmap128.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 128, 128, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //Load Image at level 1
+    pixels = [self pixelsFromImage:@"mipmap64.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 1, GL_RGBA, 64, 64, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //Load Image at level 2
+    pixels = [self pixelsFromImage:@"mipmap32.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 2, GL_RGBA, 32, 32, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //Load Image at level 3
+    pixels = [self pixelsFromImage:@"mipmap16.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 3, GL_RGBA, 16, 16, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //Load Image at level 4
+    pixels = [self pixelsFromImage:@"mipmap8.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 4, GL_RGBA, 8, 8, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //Load Image at level 5
+    pixels = [self pixelsFromImage:@"mipmap4.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 5, GL_RGBA, 4, 4, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //Load Image at level 6
+    pixels = [self pixelsFromImage:@"mipmap2.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 6, GL_RGBA, 2, 2, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //Load Image at level 7
+    pixels = [self pixelsFromImage:@"mipmap1.png"];
+    
+    //Upload the sprite image data to texture object
+    glTexImage2D(GL_TEXTURE_2D, 7, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    
+    free(pixels);
+    
+    //specify the mag and min
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    
+    //specify the mag and min
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
+    //Unbimd from texture
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    return textureId;
+}
+-(GLubyte *) pixelsFromImage:(NSString*)imageName
+{
+    //generate the texture ID
+    
+    
+    CGImageRef spriteImage = [UIImage imageNamed:imageName].CGImage;
+    
+    if(!spriteImage)
+    {
+        NSLog(@"Failed to load image %@",imageName);
+        
     }
     
+    //2
     size_t width = CGImageGetWidth(spriteImage);
     size_t height = CGImageGetHeight(spriteImage);
     
-    GLubyte *spriteData = (GLubyte *)calloc(width*height*4 , sizeof(GLubyte));
+    GLubyte *spriteData = (GLubyte *)calloc(width * height *4,sizeof(GLubyte));
     
     CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4, CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
     
+    //3
     CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), spriteImage);
-    
     CGContextRelease(spriteContext);
-    // bind to texture
-    glBindTexture(GL_TEXTURE_2D, textureId);
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)width, (GLsizei)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, spriteData);
+    return spriteData;
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     
-    glBindTexture(GL_TEXTURE_2D,0);
-    free(spriteData);
-    return textureId;
-
 }
 
 -(void) initTriangleVBO {
@@ -133,7 +213,7 @@ unsigned char indices[] = {0,1,2};
     glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
     
     glEnable(GL_TEXTURE_2D);
-    textureID = [self loadtexture:@"hello.png"];
+    textureID = [self loadTextures];
     
 }
 
@@ -212,8 +292,8 @@ unsigned char indices[] = {0,1,2};
     }
     
     zpos += 0.2;
-    if(zpos >15.0){
-        zpos = 5.0;
+    if(zpos >100.0){
+        zpos = 1.0;
     }
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
