@@ -192,6 +192,8 @@ unsigned char indices[] = {0,1,2};
     viewMatrixIndex = glGetUniformLocation(programObject, "u_ViewMatrix");
     activeTextureIndex = glGetUniformLocation(programObject, "activeTexture");
     textureCoordinateIndex = glGetAttribLocation(programObject, "a_TextureCoordinate");
+    clipPlaneIndex  = glGetUniformLocation(programObject, "u_clipPlane");
+    glUniform4f(clipPlaneIndex, 0.0, 1.0, 0.0, 0.0);
     angle =0;
     scale =1;
     zpos = 5.0;
