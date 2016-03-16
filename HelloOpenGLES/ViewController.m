@@ -212,7 +212,7 @@ unsigned char indices[] = {0,1,2};
 }
 
 - (void) initGL{
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClearColor(1.0, 1.0, 1.0, 1.0);
     glClearDepthf(1.0);
     
     //glEnable(GL_CULL_FACE); // culling enabling
@@ -225,6 +225,8 @@ unsigned char indices[] = {0,1,2};
 //    glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
     
     glEnable(GL_TEXTURE_2D);
+    glScissor(100, 100, 700, 700);
+    glEnable(GL_SCISSOR_TEST);
     textureID = [self loadTextures];
     
 }
