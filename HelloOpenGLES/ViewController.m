@@ -195,6 +195,9 @@ unsigned char indices[] = {0,1,2};
     angle =0;
     scale =1;
     zpos = 5.0;
+    sun = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject];
+    earth  = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject];
+    moon = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject];
     [self initGL];
     [self initTriangleVBO];
 }
@@ -291,11 +294,11 @@ unsigned char indices[] = {0,1,2};
         scale = 0.5;
     }
     
-    zpos += 0.2;
-    if(zpos >100.0){
-        zpos = 1.0;
-    }
-    
+//    zpos += 0.2;
+//    if(zpos >100.0){
+//        zpos = 1.0;
+//    }
+    zpos = 3.0;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     viewMatrix    = GLKMatrix4Identity;
     viewMatrix = GLKMatrix4MakeLookAt(0,0,zpos,0,0,0,0,1,0);
@@ -303,20 +306,21 @@ unsigned char indices[] = {0,1,2};
     
     
     modelMATRIX    = GLKMatrix4Identity;
-    //modelMATRIX = GLKMatrix4Translate(modelMATRIX, 0.0, 0.0, -1.0);
-    modelMATRIX = GLKMatrix4Rotate(modelMATRIX, GLKMathDegreesToRadians(angle), 0.0, 1.0, 0.0);
-    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.8, 0.8, 0.8);
-    glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
+    modelMATRIX = GLKMatrix4Translate(modelMATRIX, 0, 0, -4);
+//    modelMATRIX = GLKMatrix4Rotate(modelMATRIX, GLKMathDegreesToRadians(angle), 0.0, 1.0, 0.0);
+//    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.8, 0.8, 0.8);
+  glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
     
     
-    [self drawSquare];
+    // [self drawSquare];
+    [sun execute];
     
-    modelMATRIX = GLKMatrix4Translate(modelMATRIX, 1.0, 0.0, 0.0);
-    modelMATRIX = GLKMatrix4Rotate(modelMATRIX, -1 * GLKMathDegreesToRadians(angle), 0.0, 1.0, 0.0);
-    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.8, 0.8, 0.8);
-    glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
+//    modelMATRIX = GLKMatrix4Translate(modelMATRIX, 1.0, 0.0, 0.0);
+//    modelMATRIX = GLKMatrix4Rotate(modelMATRIX, -1 * GLKMathDegreesToRadians(angle), 0.0, 1.0, 0.0);
+//    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.8, 0.8, 0.8);
+//    glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
     
-    [self drawTriangle];
+    //[self drawTriangle];
     
     glFlush();
 }

@@ -24,6 +24,7 @@
 		E30ED9221C991EF90086E1BC /* mipmap32.png in Resources */ = {isa = PBXBuildFile; fileRef = E30ED91A1C991EF90086E1BC /* mipmap32.png */; settings = {ASSET_TAGS = (); }; };
 		E30ED9231C991EF90086E1BC /* mipmap64.png in Resources */ = {isa = PBXBuildFile; fileRef = E30ED91B1C991EF90086E1BC /* mipmap64.png */; settings = {ASSET_TAGS = (); }; };
 		E30ED9241C991EF90086E1BC /* mipmap128.png in Resources */ = {isa = PBXBuildFile; fileRef = E30ED91C1C991EF90086E1BC /* mipmap128.png */; settings = {ASSET_TAGS = (); }; };
+		E30ED9271C99226D0086E1BC /* Planet1.m in Sources */ = {isa = PBXBuildFile; fileRef = E30ED9261C99226D0086E1BC /* Planet1.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		E30ED91A1C991EF90086E1BC /* mipmap32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mipmap32.png; path = ../mipmap/mipmap32.png; sourceTree = "<group>"; };
 		E30ED91B1C991EF90086E1BC /* mipmap64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mipmap64.png; path = ../mipmap/mipmap64.png; sourceTree = "<group>"; };
 		E30ED91C1C991EF90086E1BC /* mipmap128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mipmap128.png; path = ../mipmap/mipmap128.png; sourceTree = "<group>"; };
+		E30ED9251C99226D0086E1BC /* Planet1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Planet1.h; path = ../mipmap/Planet1.h; sourceTree = "<group>"; };
+		E30ED9261C99226D0086E1BC /* Planet1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Planet1.m; path = ../mipmap/Planet1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 		7FF3A4751C969CCE00D374F9 = {
 			isa = PBXGroup;
 			children = (
+				E30ED9251C99226D0086E1BC /* Planet1.h */,
+				E30ED9261C99226D0086E1BC /* Planet1.m */,
 				E30ED9151C991EF90086E1BC /* mipmap1.png */,
 				E30ED9161C991EF90086E1BC /* mipmap2.png */,
 				E30ED9171C991EF90086E1BC /* mipmap4.png */,
@@ -197,6 +202,7 @@
 			files = (
 				7FF3A49C1C96B8CB00D374F9 /* ShaderHelper.m in Sources */,
 				7FF3A4891C969CCE00D374F9 /* ViewController.m in Sources */,
+				E30ED9271C99226D0086E1BC /* Planet1.m in Sources */,
 				7FF3A4861C969CCE00D374F9 /* AppDelegate.m in Sources */,
 				7FF3A4831C969CCE00D374F9 /* main.m in Sources */,
 			);

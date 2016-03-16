@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 #import "ShaderHelper.h"
+#import "Planet1.h"
+
 @interface ViewController : GLKViewController {
     EAGLContext* context;
     ShaderHelper* shaderHelper;
@@ -30,7 +32,9 @@
     int textureCoordinateIndex;
     int activeTextureIndex;
     int textureID;
-    
+    Planet* sun;
+    Planet* moon;
+    Planet* earth;
 }
 - (IBAction)updateTria:(id)sender;
 

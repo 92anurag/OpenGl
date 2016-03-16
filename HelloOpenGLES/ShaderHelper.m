@@ -33,7 +33,7 @@ const char* F_SRC = ""
                     " uniform sampler2D activeTexture; \n"
                     "void main() {          \n"
                     "vec4 textureColor = texture2D(activeTexture,v_TextureCoordinate); \n"
-                    "   gl_FragColor = v_color * textureColor;\n"
+                    "   gl_FragColor = v_color;\n"
                     "}";
 
 @interface ShaderHelper()
