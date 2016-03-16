@@ -25,6 +25,10 @@
 		E30ED9231C991EF90086E1BC /* mipmap64.png in Resources */ = {isa = PBXBuildFile; fileRef = E30ED91B1C991EF90086E1BC /* mipmap64.png */; settings = {ASSET_TAGS = (); }; };
 		E30ED9241C991EF90086E1BC /* mipmap128.png in Resources */ = {isa = PBXBuildFile; fileRef = E30ED91C1C991EF90086E1BC /* mipmap128.png */; settings = {ASSET_TAGS = (); }; };
 		E30ED9271C99226D0086E1BC /* Planet1.m in Sources */ = {isa = PBXBuildFile; fileRef = E30ED9261C99226D0086E1BC /* Planet1.m */; settings = {ASSET_TAGS = (); }; };
+		E30ED92B1C99344E0086E1BC /* earth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E30ED9281C99344E0086E1BC /* earth.jpg */; settings = {ASSET_TAGS = (); }; };
+		E30ED92C1C99344E0086E1BC /* Moon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E30ED9291C99344E0086E1BC /* Moon.jpg */; settings = {ASSET_TAGS = (); }; };
+		E30ED92D1C99344E0086E1BC /* sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E30ED92A1C99344E0086E1BC /* sun.jpg */; settings = {ASSET_TAGS = (); }; };
+		E30ED92F1C99427E0086E1BC /* stars.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E30ED92E1C99427E0086E1BC /* stars.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		E30ED91C1C991EF90086E1BC /* mipmap128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mipmap128.png; path = ../mipmap/mipmap128.png; sourceTree = "<group>"; };
 		E30ED9251C99226D0086E1BC /* Planet1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Planet1.h; path = ../mipmap/Planet1.h; sourceTree = "<group>"; };
 		E30ED9261C99226D0086E1BC /* Planet1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Planet1.m; path = ../mipmap/Planet1.m; sourceTree = "<group>"; };
+		E30ED9281C99344E0086E1BC /* earth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = earth.jpg; path = ../mipmap/earth.jpg; sourceTree = "<group>"; };
+		E30ED9291C99344E0086E1BC /* Moon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Moon.jpg; path = ../mipmap/Moon.jpg; sourceTree = "<group>"; };
+		E30ED92A1C99344E0086E1BC /* sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sun.jpg; path = ../mipmap/sun.jpg; sourceTree = "<group>"; };
+		E30ED92E1C99427E0086E1BC /* stars.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = stars.jpg; path = ../mipmap/stars.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,10 @@
 		7FF3A4751C969CCE00D374F9 = {
 			isa = PBXGroup;
 			children = (
+				E30ED92E1C99427E0086E1BC /* stars.jpg */,
+				E30ED9281C99344E0086E1BC /* earth.jpg */,
+				E30ED9291C99344E0086E1BC /* Moon.jpg */,
+				E30ED92A1C99344E0086E1BC /* sun.jpg */,
 				E30ED9251C99226D0086E1BC /* Planet1.h */,
 				E30ED9261C99226D0086E1BC /* Planet1.m */,
 				E30ED9151C991EF90086E1BC /* mipmap1.png */,
@@ -183,11 +195,15 @@
 				E30ED91F1C991EF90086E1BC /* mipmap4.png in Resources */,
 				E30ED9211C991EF90086E1BC /* mipmap16.png in Resources */,
 				E30ED9201C991EF90086E1BC /* mipmap8.png in Resources */,
+				E30ED92F1C99427E0086E1BC /* stars.jpg in Resources */,
 				E30ED9221C991EF90086E1BC /* mipmap32.png in Resources */,
+				E30ED92C1C99344E0086E1BC /* Moon.jpg in Resources */,
 				E30ED9121C982E4C0086E1BC /* hello.png in Resources */,
 				E30ED9241C991EF90086E1BC /* mipmap128.png in Resources */,
 				E30ED91D1C991EF90086E1BC /* mipmap1.png in Resources */,
 				7FF3A4911C969CCE00D374F9 /* LaunchScreen.storyboard in Resources */,
+				E30ED92B1C99344E0086E1BC /* earth.jpg in Resources */,
+				E30ED92D1C99344E0086E1BC /* sun.jpg in Resources */,
 				7FF3A48E1C969CCE00D374F9 /* Assets.xcassets in Resources */,
 				7FF3A48C1C969CCE00D374F9 /* Main.storyboard in Resources */,
 			);

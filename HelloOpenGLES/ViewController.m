@@ -195,25 +195,32 @@ unsigned char indices[] = {0,1,2};
     angle =0;
     scale =1;
     zpos = 5.0;
-    sun = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject];
-    earth  = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject];
-    moon = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject];
+    sun = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject TextureFileName:@"sun.jpg"];
+    earth  = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject TextureFileName:@"earth.jpg"];
+    moon = [[Planet alloc] init:50 slices:50 radius:1 squash:1 ProgramObject:programObject TextureFileName:@"Moon.jpg"];
+    
+    NSError* error;
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"stars.jpg" ofType:nil];
+    backgroundTexture = [GLKTextureLoader textureWithContentsOfFile:path options:nil error:&error];
+    glBindTexture(GL_TEXTURE_2D, backgroundTexture.name);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     [self initGL];
     [self initTriangleVBO];
 }
 
 - (void) initGL{
-    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 1.0);
     glClearDepthf(1.0);
     
     //glEnable(GL_CULL_FACE); // culling enabling
     glEnable(GL_DEPTH_TEST);
-    projectionMatrix = GLKMatrix4Identity;
+    //projectionMatrix = GLKMatrix4Identity;
     // projectionMatrix = GLKMatrix4MakeFrustum(-2.0, 2.0, -2.0, 2.0, 0.1, 100.0);
     
-    float aspect = (float)self.view.bounds.size.width / (float)self.view.bounds.size.height ;
-    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45), aspect, 0.1, 100.0);
-    glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
+//    float aspect = (float)self.view.bounds.size.width / (float)self.view.bounds.size.height ;
+//    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45), aspect, 0.1, 100.0);
+//    glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
     
     glEnable(GL_TEXTURE_2D);
     textureID = [self loadTextures];
@@ -260,7 +267,7 @@ unsigned char indices[] = {0,1,2};
     //
     glActiveTexture(GL_TEXTURE0);
     
-    glBindTexture(GL_TEXTURE_2D,textureID);
+    glBindTexture(GL_TEXTURE_2D,backgroundTexture.name);
     
     glUniform1i(activeTextureIndex, 0);
     glEnableVertexAttribArray(positionIndex);
@@ -298,28 +305,49 @@ unsigned char indices[] = {0,1,2};
 //    if(zpos >100.0){
 //        zpos = 1.0;
 //    }
-    zpos = 3.0;
+    
+    // draw the background
+    // switch to orthographic projection
+    projectionMatrix = GLKMatrix4MakeOrtho(-1.0, 1.0, -1.0, 1.0, 0.0, 1.0);
+    modelMATRIX = GLKMatrix4Identity;
+    glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
+    [self drawSquare];
+    
+    // switch to prespective projection
+    float aspect = (float)self.view.bounds.size.width / (float)self.view.bounds.size.height ;
+    projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(60), aspect, 0.1, 100.0);
+    glUniformMatrix4fv(projectionMatrixIndex, 1, false, projectionMatrix.m);
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     viewMatrix    = GLKMatrix4Identity;
-    viewMatrix = GLKMatrix4MakeLookAt(0,0,zpos,0,0,0,0,1,0);
+    //viewMatrix = GLKMatrix4MakeLookAt(0,0,zpos,0,0,0,0,1,0);
     glUniformMatrix4fv(viewMatrixIndex, 1,false, viewMatrix.m);
     
     
     modelMATRIX    = GLKMatrix4Identity;
-    modelMATRIX = GLKMatrix4Translate(modelMATRIX, 0, 0, -4);
-//    modelMATRIX = GLKMatrix4Rotate(modelMATRIX, GLKMathDegreesToRadians(angle), 0.0, 1.0, 0.0);
-//    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.8, 0.8, 0.8);
-  glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
+    modelMATRIX = GLKMatrix4Translate(modelMATRIX, 0.0, 0.0, -6);
+    modelMATRIX = GLKMatrix4Rotate(modelMATRIX, GLKMathDegreesToRadians(angle), 0, 1, 0);
+    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.3, 0.3, 0.3);
+    glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
     
     
     // [self drawSquare];
     [sun execute];
     
-//    modelMATRIX = GLKMatrix4Translate(modelMATRIX, 1.0, 0.0, 0.0);
-//    modelMATRIX = GLKMatrix4Rotate(modelMATRIX, -1 * GLKMathDegreesToRadians(angle), 0.0, 1.0, 0.0);
-//    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.8, 0.8, 0.8);
-//    glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
+     modelMATRIX = GLKMatrix4Translate(modelMATRIX, 4, 0, 0);
+     modelMATRIX = GLKMatrix4Rotate(modelMATRIX,GLKMathDegreesToRadians(angle + 30), 0, 1, 0);
+     modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.6, 0.6, 0.6);
+     glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
     
+    [earth execute];
+    modelMATRIX = GLKMatrix4Rotate(modelMATRIX,GLKMathDegreesToRadians(2*angle), 0, 1, 0);
+    modelMATRIX = GLKMatrix4Translate(modelMATRIX, 2, 0, 0);
+    modelMATRIX = GLKMatrix4Rotate(modelMATRIX,GLKMathDegreesToRadians(angle), 0, 1, 0);
+    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.5, 0.5, 0.5);
+
+    //    modelMATRIX = GLKMatrix4Scale(modelMATRIX, 0.8, 0.8, 0.8);
+    glUniformMatrix4fv(modelMatrixIndex, 1,false, modelMATRIX.m);
+    [moon execute];
     //[self drawTriangle];
     
     glFlush();

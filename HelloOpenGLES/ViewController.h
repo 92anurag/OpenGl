@@ -35,6 +35,7 @@
     Planet* sun;
     Planet* moon;
     Planet* earth;
+    GLKTextureInfo *backgroundTexture;
 }
 - (IBAction)updateTria:(id)sender;
 
