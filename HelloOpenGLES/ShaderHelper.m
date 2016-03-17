@@ -12,28 +12,21 @@
 
 const char* V_SRC = "attribute vec4 a_Position;     \n"
                     "attribute vec4 a_color;  \n"
-                    "attribute vec2 a_TextureCoordinate;  \n"
                     "varying vec4 v_color;   \n"
-                    "varying vec2 v_TextureCoordinate;   \n"
-                    "uniform vec4 u_PositionOffset;   \n"
                     "uniform mat4 u_ModelMatrix;   \n"
                     "uniform mat4 u_ProjectionMatrix;\n"
-                    "uniform mat4 u_ViewMatrix;\n"
                     "void main() {          \n"
-                    "   gl_Position =  u_ProjectionMatrix * u_ViewMatrix * u_ModelMatrix * a_Position;\n"
+                    "   gl_Position =  u_ProjectionMatrix * u_ModelMatrix * a_Position;\n"
                     "   v_color = a_color;      \n   "
-                    "   v_TextureCoordinate = a_TextureCoordinate; \n"
+                    " gl_PointSize = 4.0; \n"
                     "}";
 
 
 const char* F_SRC = ""
                     "precision highp float; \n"
                     " varying vec4 v_color;   \n"
-                    " varying vec2 v_TextureCoordinate; \n"
-                    " uniform sampler2D activeTexture; \n"
                     "void main() {          \n"
-                    "vec4 textureColor = texture2D(activeTexture,v_TextureCoordinate); \n"
-                    "   gl_FragColor = textureColor;\n"
+                    "   gl_FragColor = v_color;\n"
                     "}";
 
 @interface ShaderHelper()

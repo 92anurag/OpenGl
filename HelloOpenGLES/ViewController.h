@@ -15,29 +15,25 @@
     EAGLContext* context;
     ShaderHelper* shaderHelper;
     int programObject;
+    
     int positionIndex;
     int colorIndex;
     unsigned int triangleVBO;
-    int offsetIndex;
-    int modelMatrixIndex;
-    int projectionMatrixIndex;
-    int viewMatrixIndex;
-    float xPosOffset;
-    GLKMatrix4 modelMATRIX;
-    float angle;
-    float scale;
-    GLKMatrix4 projectionMatrix;
-    GLKMatrix4 viewMatrix;
-    float zpos;
     int textureCoordinateIndex;
     int activeTextureIndex;
     int textureID;
-    Planet* sun;
-    Planet* moon;
-    Planet* earth;
-    GLKTextureInfo *backgroundTexture;
-}
-- (IBAction)updateTria:(id)sender;
+    
+    int modelMatrixIndex;
+    GLKMatrix4 modelMATRIX;
+    float angle;
+    float scale;
+    
+    int projectionMatrixIndex;
+    GLKMatrix4 projectionMatrix;
 
+    float zpos;
+    GLKTextureInfo *backgroundTexture;
+    NSMutableArray* points;
+}
 @end
 
