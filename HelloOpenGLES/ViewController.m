@@ -69,7 +69,6 @@ unsigned char indices[] = {0,1,2};
     
     modelMatrixIndex = glGetUniformLocation(programObject, "u_ModelMatrix");
     projectionMatrixIndex = glGetUniformLocation(programObject, "u_ProjectionMatrix");
-    activeTextureIndex = glGetUniformLocation(programObject, "activeTexture");
     
     points = [[NSMutableArray alloc] init];
     projectionMatrix = GLKMatrix4MakeOrtho(0, self.view.frame.size.width, 0, self.view.frame.size.height, 0, 1);
@@ -85,8 +84,8 @@ unsigned char indices[] = {0,1,2};
 }
 
 -(void) drawPoints {
-    // write a constant value for the color attribute
     
+    // write a constant value for the color attribute
     glVertexAttrib4f(colorIndex, 1.0, 0.0, 0.0, 1.0);
     for(NSValue* obj in points) {
         CGPoint point = [obj CGPointValue];
@@ -95,9 +94,19 @@ unsigned char indices[] = {0,1,2};
         vertex[1] = self.view.frame.size.height - point.y;
         vertex[2] = 0.0;
         vertex[3] = 1.0;
-        glVertexAttrib4fv(positionIndex, vertex);
         
-        glDrawArrays(GL_POINTS, 0, 1);
+        float vertices[ ] = {vertex[0],vertex[1],0,
+            vertex[0]+50,vertex[1],0,
+            vertex[0]+50,vertex[1]+50,0,
+            vertex[0],vertex[1]+50,0};
+        
+        // for writing to array first we enable it
+        glEnableVertexAttribArray(positionIndex);
+        glVertexAttribPointer(positionIndex, 3 , GL_FLOAT, false, 0, vertices);
+        glDrawArrays(GL_LINE_LOOP, 0, 3);
+        
+        // disable writing to array
+        
     }
 }
 
@@ -112,14 +121,11 @@ unsigned char indices[] = {0,1,2};
     glUniformMatrix4fv(modelMatrixIndex, 1, false, modelMATRIX.m);
 
     [self drawPoints];
-    // switch to prespective projection
-
     glFlush();
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
